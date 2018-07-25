@@ -1,0 +1,42 @@
+{% extends 'products/layout.html' %}
+{% block title %}{{block.super}} | Products {% endblock%}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1 class="text-center">Products</h1>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    {% if products %}
+    {% for product in products %}
+    <div class="col-md-3">
+    <div class="card" style="width: 18rem;">
+        {% load static %}
+        <img src="{% static 'products/img/{{product.image}}' %}'" alt="Product Image">
+        <div class="card-body">
+            <h5 class="card-title">{{product.title}}</h5>
+            <p class="card-text">{{product.short_desc}}</p>
+            <small><b>{{product.price}}</b></small>
+            <a href="#" class="btn btn-primary">View</a>
+            <a href="#" class="btn btn-success">Add To Cart</a>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <a href="add_product" class="btn btn-primary">Add Product</a>
+    </div>
+</div>
+
+
+{% endblock %}

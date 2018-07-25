@@ -1,0 +1,25 @@
+{% extends 'products/layout.html' %}
+{% block title %}{{block.super}} | Add Product {% endblock%}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1 class="text-center">Add Product</h1>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <form action="process_product" method="POST">
+            {% csrf_token %}
+            {{add_prod.as_p}}
+            <input type="submit" value="Add" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

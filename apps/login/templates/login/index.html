@@ -1,0 +1,49 @@
+{% extends 'login/layout.html' %}
+{% block title %}{{block.super}} | Login &amp; Registration {% endblock%}
+{% block body %}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron text-center">
+            <h1>Login &amp; Register</h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 offset-3">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li{% if message.tags == "error" %} class="bg-danger text-white" 
+                    {% elif message.tags == "success" %} class="bg-success text-white"
+                    {% endif %}>{{message}}</li><br>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <form action="register" method="POST">
+            {% csrf_token %}
+            {{reg.as_p}}
+            <input type="submit" class="btn btn-success" value="Register">
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <form action="login" method="POST">
+            {% csrf_token %}
+            {{log.as_p}}
+            <input type="submit" class="btn btn-primary" value="Login">
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

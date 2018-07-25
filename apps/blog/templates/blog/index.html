@@ -1,0 +1,54 @@
+{% extends 'blog/layout.html' %}
+{% block title %}{{block.super}} | Blog {% endblock%}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1 class="text-center">Blog</h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+        <div class="col-lg-6 offset-3">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li{% if message.tags == "error" %} class="bg-danger text-white" 
+                        {% elif message.tags == "success" %} class="bg-success text-white"
+                        {% endif %}>{{message}}</li><br>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+
+
+<div class="row">
+        {% if blog %}
+        {% for post in blog %}
+        <div class="col-md-3">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">{{post.body}}</p>
+                    <small><b>{{post.users.first_name}} {{post.users.last_name}}</b></small>
+                    <a href="{{post.id}}/post" class="btn btn-primary">Go To Post</a>
+                    <a href="{{post.id}}/delete" class="btn btn-danger">X</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <a href="add_blog" class="btn btn-primary">Add Blog</a>
+    </div>
+</div>
+
+
+
+{% endblock %}

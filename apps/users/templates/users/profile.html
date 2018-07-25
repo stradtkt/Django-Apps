@@ -1,0 +1,23 @@
+{% extends 'users/layout.html' %}
+{% block title %}{{block.super}} | Users | Profile {% endblock%}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1 class="text-center">{{user.first_name}} {{user.last_name}}</h1>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3 class="text-center">{{user.email}}</h3>
+        <p>{{user.password}}</p>
+    </div>
+    <div class="col-md-6">
+        <p>{{created_at}}</p>
+    </div>
+</div>
+
+{% endblock %}

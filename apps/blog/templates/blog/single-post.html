@@ -1,0 +1,33 @@
+{% extends 'blog/layout.html' %}
+{% block title %}{{block.super}} | Blog | Post {% endblock%}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1 class="text-center">{{blog.title}}</h1>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <p class="lead">{{blog.body}}</p>
+
+        <small><b>{{blog.users.first_name}}</b></small>
+        <small>{{blog.created_at}}</small>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+        <form action="/{{blog.id}}/post/process_comment" method="POST">
+            {% csrf_token %}
+            {{comment.as_p}}
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

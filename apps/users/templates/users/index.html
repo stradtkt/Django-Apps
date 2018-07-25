@@ -1,0 +1,47 @@
+{% extends 'users/layout.html' %}
+{% block title %}{{block.super}} | Users {% endblock%}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="jumbotron">
+            <h1 class="text-center">Users</h1>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead class="thead-primary">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Created At</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if users %}
+                {% for user in users %}
+                <tr>
+                    <td>{{user.first_name}} {{user.last_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.created_at}}</td>
+                    <td>
+                        <a href="profile/{{user.id}}" class="btn btn-primary">Profile</a>
+                        <a href="edit/{{user.id}}" class="btn btn-warning text-white">Edit</a>
+                        <a href="delete/{{user.id}}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+{% endblock %}
